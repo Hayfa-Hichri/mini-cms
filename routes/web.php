@@ -2,10 +2,8 @@
 
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
-Route::get('/', [PageController::class, 'home']);
-
-Route::get('/a-propos', [PageController::class, 'about']);
 
 Route::get('/heure', function () {
     return view('heure', [
@@ -13,4 +11,18 @@ Route::get('/heure', function () {
         'date' => now()->format('d/m/Y'),
     ]);
 });
+
+Route::get('/', [PageController::class, 'home'])->name('home');
+
+Route::get('/a-propos', [PageController::class, 'about'])->name('about');
+
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+
+Route::get('/posts/archive/{year}', [PostController::class, 'archive'])
+    ->whereNumber('year')
+    ->name('posts.archive');
+
+Route::get('/posts/{slug}', [PostController::class, 'show'])
+    ->where('slug', '[a-z0-9-]+')
+    ->name('posts.show');
 

@@ -6,17 +6,14 @@ class PageController extends Controller
 {
     public function home()
     {
-        return view('welcome');
+        return view('home');
     }
 
     public function about()
     {
         return view('a-propos', [
-            'auteur' => 'hayfa hichri',
+            'auteur' => 'haifa hichri',
             'groupe' => 'MDW33',
         ]);
-        Route::get('/', [PageController::class, 'home'])->name('home');
-
-Route::get('/a-propos', [PageController::class, 'about'])->name('about');
     }
 }
