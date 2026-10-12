@@ -15,5 +15,8 @@ class PageController extends Controller
             'auteur' => 'hayfa hichri',
             'groupe' => 'MDW33',
         ]);
+        Route::get('/', [PageController::class, 'home'])->name('home');
+
+Route::get('/a-propos', [PageController::class, 'about'])->name('about');
     }
 }
