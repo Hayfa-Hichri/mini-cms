@@ -44,6 +44,11 @@ it('returns 404 for an unknown post', function () {
     $this->get('/posts/999')->assertNotFound();
 });
 
+it('shows the create form', function () {
+    $this->get(route('posts.create'))
+        ->assertOk()
+        ->assertSee('Nouvel article');
+});
 it('shows only published posts on the home page', function () {
     Post::create([
         'title' => 'Article visible',
